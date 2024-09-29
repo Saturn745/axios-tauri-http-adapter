@@ -70,7 +70,8 @@ export default function axiosAdapter<T>() {
             method: config.method?.toUpperCase(),
             url: getCorrectUrl(config.baseURL, config.url, config.params),
             headers: headers as [string, string][],
-            data: getCorrectBodyType(config.data) ?? undefined
+            data: getCorrectBodyType(config.data) ?? undefined,
+            connectTimeout: config.timeout ?? undefined,
         };
 
         const rid = await invoke<number>("plugin:http|fetch", {
